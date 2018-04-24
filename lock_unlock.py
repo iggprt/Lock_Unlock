@@ -1,6 +1,7 @@
 import ctypes, time, threading
 import msvcrt
 import sys
+
 user32 = ctypes.windll.User32
 OpenDesktop = user32.OpenDesktopA
 SwitchDesktop = user32.SwitchDesktop
@@ -20,16 +21,19 @@ last_unlock = 0
 state = 1
 lock = threading.Lock()
 
+#its a function to write in this file
 def print_in_file(msg):
 	file = open("work.log","a+")
 	file.write(msg)
 	file.close()
 
+# its a flag to exit all threads
 def exit_flag():
 	if flg: 
 		return 1
 	return 0
 
+# display the time nicely
 def	time_str(a):
 	hours = int(a/3600)
 	msg = str(hours)
